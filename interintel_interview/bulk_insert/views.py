@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse('<h1>Welcome to home</h1>')
+    return render(request, 'bulk_insert/index.html')
 
 def insert(request):
     return HttpResponse('<h1>Welcome to insert</h1>')
