@@ -1,18 +1,18 @@
 {% extends "layout.html" %} {% block content %}
 <h1>Insert Product Variant</h1>
-<form enctype="multipart/form-data" method="post">
+<form enctype="multipart/form-data" method="post" class="product-form">
   {% csrf_token %}
-  <div class="">
+  <div class="form-group">
     <label for="sku">SKU</label>
     <input type="text" name="sku" placeholder="Enter SKU" required />
   </div>
   <br />
-  <div class="">
+  <div class="form-group">
     <label for="name">Product Variant Name</label>
     <input type="text" name="name" placeholder="Enter name" required />
   </div>
   <br />
-  <div class="">
+  <div class="form-group">
     <label for="price">Product Variant Price</label>
     <input
       type="number"
@@ -23,12 +23,12 @@
     />
   </div>
   <br />
-  <div class="">
+  <div class="form-group">
     <label for="details">Product Variant Details</label>
     <textarea name="details" placeholder="Enter details"></textarea>
   </div>
   <br />
-  <div class="">
+  <div class="form-group">
     <label for="product">Product</label>
     <select name="product" required>
       <option disabled selected>Select product</option>
@@ -38,7 +38,6 @@
     </select>
   </div>
   <br />
-
   <input type="submit" value="Submit" />
 </form>
 <br />
