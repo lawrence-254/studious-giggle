@@ -1,3 +1,44 @@
 {% extends 'layout.html' %} {% block content %}
-<h1>home</h1>
+<a href="{% url 'insert' %}">Insert product</a>
+<br />
+<a href="{% url 'insert_variant' %}">Inser Product Variant </a>
+<h1>Home</h1>
+<div class="container">
+    <div class="item">
+        <h1>Products</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td><img src="{{ product.image.url }}" alt="{{ product.name }}" width="100" height="100" /></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="item">
+        <h1>Product Variant</h1>
+        <table>
+            <tr>
+                <th>SKU</th>
+                <th> Name</th>
+                <th>Price</th>
+                <th>Details</th>
+                <th>Product</th>
+            </tr>
+            {% for variant in variants %}
+            <tr>
+                <td>{{ variant.sku }}</td>
+                <td>{{ variant.name }}</td>
+                <td>{{ variant.price }}</td>
+                <td>{{ variant.details }}</td>
+                <td>{{ variant.product.name }}</td>
+            </tr>
+            {% endfor %}
+
+    </div>
+</div>
 {% endblock %}

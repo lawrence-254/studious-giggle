@@ -7,3 +7,6 @@ def home(request):
 
 def insert(request):
     return render(request, 'bulk_insert/insert.html')
+
+def insert_variant(request):
+    return render(request, 'bulk_insert/insert_variant.html')

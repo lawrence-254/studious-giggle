@@ -3,7 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Interintel interview</title>
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 3fr; /* Two columns with equal width */
+        gap: 10px; /* Gap between grid items */
+      }
+      .item {
+        background-color: lightblue;
+        padding: 20px;
+        border: 1px solid blue;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #ddd;
+      }
+      img {
+        display: block;
+        margin: auto;
+        max-width: 100px;
+        max-height: 100px;
+      }
+    </style>
   </head>
   <body>
     {% block content %} {% endblock %}
