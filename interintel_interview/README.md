@@ -4,6 +4,9 @@ this project is written using he following technologies
 - Jinja, html, css used to provide a user interface
 - sqlite to store data(I opted for this because the project was not complex and this would work perfectly)
 
+NB: this project is heavily focused on the backend and does not have up to standards user interaction,
+I used the in built django library minimally and often define some functions in my own way.
+
 the functionality of this project can be accessed through the provided home page or the python django default admin page
 
 To use or view this project, follow the steps below
