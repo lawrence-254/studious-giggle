@@ -12,6 +12,10 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['name', 'image']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image'].required = False
+
 class ProductVariantForm(forms.ModelForm):
     '''
     a class that contains the product variant form
