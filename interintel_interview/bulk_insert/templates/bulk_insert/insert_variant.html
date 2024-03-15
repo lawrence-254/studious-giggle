@@ -4,40 +4,46 @@
   {% csrf_token %}
   <div class="form-group">
     <label for="sku">SKU</label>
-    <input type="text" name="sku" placeholder="Enter SKU" required />
+    <input type="text" id="sku" name="sku" placeholder="Enter SKU" required />
   </div>
-  <br />
   <div class="form-group">
     <label for="name">Product Variant Name</label>
-    <input type="text" name="name" placeholder="Enter name" required />
+    <input
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Enter name"
+      required
+    />
   </div>
-  <br />
   <div class="form-group">
     <label for="price">Product Variant Price</label>
     <input
       type="number"
+      id="price"
       name="price"
       placeholder="Enter price"
       step="0.01"
       required
     />
   </div>
-  <br />
   <div class="form-group">
     <label for="details">Product Variant Details</label>
-    <textarea name="details" placeholder="Enter details"></textarea>
+    <textarea
+      id="details"
+      name="details"
+      placeholder="Enter details"
+    ></textarea>
   </div>
-  <br />
   <div class="form-group">
-    <label for="product">Product</label>
-    <select name="product" required>
+    <label for="product">Select Product</label>
+    <select id="product" name="product" required>
       <option disabled selected>Select product</option>
       {% for product in products %}
       <option value="{{ product.id }}">{{ product.name }}</option>
       {% endfor %}
     </select>
   </div>
-  <br />
   <input type="submit" value="Submit" />
 </form>
 <br />

@@ -35,7 +35,9 @@
                 <td>{{ variant.name }}</td>
                 <td>{{ variant.price }}</td>
                 <td>{{ variant.details }}</td>
+                {% for variant in variants %}
                 <td>{{ variant.product.name }}</td>
+                {% endfor %}
             </tr>
             {% endfor %}
 
