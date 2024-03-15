@@ -1,6 +1,6 @@
 This is a simple interview project that focuses on data insertion into an SQL database
 this project is written using he following technologies
-- Django(python) used to perfom back end logic
+- Django(python) used to perform back end logic
 - Jinja, html, css used to provide a user interface
 - sqlite to store data(I opted for this because the project was not complex and this would work perfectly)
 
