@@ -88,44 +88,44 @@ def insert_variant(request):
 
 
 
-class ProductVariantCreateView(CreateView):
-    """
-    A view class for creating a product variant.
+# class ProductVariantCreateView(CreateView):
+#     """
+#     A view class for creating a product variant.
 
-    Attributes:
-        model (ProductVariant): The model used for creating the form.
-        fields (list): The fields to include in the form.
-        template_name (str): The name of the template to render for this view.
-    """
-    model = ProductVariant
-    fields = ['sku', 'name', 'price', 'details', 'product_id']
-    template_name = 'bulk_insert/insert_variant.html'
+#     Attributes:
+#         model (ProductVariant): The model used for creating the form.
+#         fields (list): The fields to include in the form.
+#         template_name (str): The name of the template to render for this view.
+#     """
+#     model = ProductVariant
+#     fields = ['sku', 'name', 'price', 'details', 'product_id']
+#     template_name = 'bulk_insert/insert_variant.html'
 
-    def form_valid(self, form):
-        """
-        Method to handle the form submission when it is valid.
+#     def form_valid(self, form):
+#         """
+#         Method to handle the form submission when it is valid.
 
-        Args:
-            form (ModelForm): The form object.
+#         Args:
+#             form (ModelForm): The form object.
 
-        Returns:
-            HttpResponse: The HTTP response object containing the rendered template.
-        """
-        product_id = self.request.POST.get('product_id')
-        form.instance.product_id = Product.objects.get(id=product_id)
-        return super().form_valid(form)
+#         Returns:
+#             HttpResponse: The HTTP response object containing the rendered template.
+#         """
+#         product_id = self.request.POST.get('product_id')
+#         form.instance.product_id = Product.objects.get(id=product_id)
+#         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        """
-        Method to provide additional context data to the template.
+#     def get_context_data(self, **kwargs):
+#         """
+#         Method to provide additional context data to the template.
 
-        Args:
-            kwargs: The keyword arguments.
+#         Args:
+#             kwargs: The keyword arguments.
 
-        Returns:
-            dict: The context data to provide to the template.
-        """
-        context = super().get_context_data(**kwargs)
-        context['products'] = Product.objects.all()
-        context['variants'] = ProductVariant.objects.all()
-        return context
+#         Returns:
+#             dict: The context data to provide to the template.
+#         """
+#         context = super().get_context_data(**kwargs)
+#         context['products'] = Product.objects.all()
+#         context['variants'] = ProductVariant.objects.all()
+#         return context
