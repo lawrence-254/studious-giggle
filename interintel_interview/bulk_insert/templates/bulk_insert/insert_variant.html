@@ -1,4 +1,15 @@
 {% extends "layout.html" %} {% block content %}
+<!-- {% if product_form.errors %}
+<div class="alert alert-danger">
+  {% for field in product_form %} {% for error in field.errors %}
+  <strong>{{ field.label }}</strong>: {{ error }}  {% endfor %} {% endfor %}
+</div>
+{% endif %} {% if variant_form.errors %}
+<div class="alert alert-danger">
+  {% for field in variant_form %} {% for error in field.errors %}
+  <strong>{{ field.label }}</strong>: {{ error }} {% endfor %} {% endfor %}
+</div>
+{% endif %} -->
 <h1>Insert Product Variant</h1>
 <form enctype="multipart/form-data" method="post" class="product-form">
   {% csrf_token %}
@@ -44,8 +55,11 @@
       {% endfor %}
     </select>
   </div>
-  <input type="submit" value="Submit" />
+  <div class="form-group">
+    <input type="submit" value="Submit" />
+  </div>
 </form>
+
 <br />
 <a href="{% url 'home' %}">Home</a>
 {% endblock %}

@@ -35,8 +35,12 @@
                 <td>{{ variant.name }}</td>
                 <td>{{ variant.price }}</td>
                 <td>{{ variant.details }}</td>
+                {% for product in products %}
                 {% for variant in variants %}
-                <td>{{ variant.product.name }}</td>
+                {% if variant.product_id_id == product.id %}
+                <td>{{ product.name }}</td>
+                {% endif %}
+                {% endfor %}
                 {% endfor %}
             </tr>
             {% endfor %}
