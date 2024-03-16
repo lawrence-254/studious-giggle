@@ -16,13 +16,20 @@ class ProductForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['image'].required = False
 
+
 class ProductVariantForm(forms.ModelForm):
-    '''
-    a class that contains the product variant form
-    '''
+    """
+    A form for creating or updating a product variant.
+    """
+    sku = forms.CharField(label="SKU", required=True)
+    name = forms.CharField(label="Product Variant Name", required=True)
+    price = forms.DecimalField(label="Product Variant Price", required=True, decimal_places=2)
+    details = forms.CharField(label="Product Variant Details", widget=forms.Textarea, required=False)
+    product_id = forms.IntegerField(label="Product ID", required=True)
+
     class Meta:
-        '''
-        a class that contains the product variant form meta data
-        '''
+        """
+        Metadata about the ProductVariantForm.
+        """
         model = ProductVariant
         fields = ['sku', 'name', 'price', 'details', 'product_id']

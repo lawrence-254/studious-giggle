@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_protect
 from .models import Product, ProductVariant
 from .forms import ProductForm, ProductVariantForm
 # from django.views.generic import CreateView
-from django.views.decorators.csrf import csrf_protect
+
 
 # Create your views here.
 # class ProductView(ListView):
@@ -41,6 +42,7 @@ def insert(request):
         if form.is_valid():
             form.save()
             return HttpResponse('Data inserted successfully')
+            return redirect('home')
     else:
         form = ProductForm()
 
@@ -103,16 +105,18 @@ def insert(request):
 
 
 '''
-new variant insert funtion
+new variant insert function
 '''
 @csrf_protect
 def insert_variant(request):
+    form = ProductVariantForm(request.POST)
     if request.method == 'POST':
-        form = ProductVariantForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponse('Data inserted successfully')
+            return redirect('home')
     else:
+        return HttpResponse('Data not inserted successfully')
         form = ProductVariantForm()
 
     context = {

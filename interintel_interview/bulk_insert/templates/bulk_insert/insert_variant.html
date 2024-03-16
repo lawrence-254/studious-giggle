@@ -1,22 +1,23 @@
-{% extends "layout.html" %} {% block content %}
-<!-- {% if product_form.errors %}
+{% extends "layout.html" %} {% block content %} {% if product_form.errors %}
 <div class="alert alert-danger">
   {% for field in product_form %} {% for error in field.errors %}
-  <strong>{{ field.label }}</strong>: {{ error }}  {% endfor %} {% endfor %}
+  <strong>{{ field.label }}</strong>: {{ error }} {% endfor %} {% endfor %}
 </div>
 {% endif %} {% if variant_form.errors %}
 <div class="alert alert-danger">
   {% for field in variant_form %} {% for error in field.errors %}
   <strong>{{ field.label }}</strong>: {{ error }} {% endfor %} {% endfor %}
 </div>
-{% endif %} -->
+{% endif %}
 <h1>Insert Product Variant</h1>
 <form enctype="multipart/form-data" method="post" class="product-form">
   {% csrf_token %}
+
   <div class="form-group">
     <label for="sku">SKU</label>
     <input type="text" id="sku" name="sku" placeholder="Enter SKU" required />
   </div>
+
   <div class="form-group">
     <label for="name">Product Variant Name</label>
     <input
@@ -27,6 +28,7 @@
       required
     />
   </div>
+
   <div class="form-group">
     <label for="price">Product Variant Price</label>
     <input
@@ -38,6 +40,7 @@
       required
     />
   </div>
+
   <div class="form-group">
     <label for="details">Product Variant Details</label>
     <textarea
@@ -46,6 +49,7 @@
       placeholder="Enter details"
     ></textarea>
   </div>
+
   <div class="form-group">
     <label for="product">Select Product</label>
     <select id="product" name="product" required>
@@ -55,6 +59,7 @@
       {% endfor %}
     </select>
   </div>
+
   <div class="form-group">
     <input type="submit" value="Submit" />
   </div>
