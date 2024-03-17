@@ -10,7 +10,7 @@ class Product(models.Model):
     a class that contains the product category model
     '''
     name = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='category_images', default='category_images/default.jpg')
+    image = models.ImageField(upload_to='static/category_images', default='./static/category_images/default.jpg')
 
     def __str__(self):
         '''

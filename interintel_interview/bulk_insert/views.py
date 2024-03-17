@@ -109,14 +109,18 @@ new variant insert function
 '''
 @csrf_protect
 def insert_variant(request):
-    form = ProductVariantForm(request.POST)
+    form = None
     if request.method == 'POST':
+        form = ProductVariantForm(data=request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponse('Data inserted successfully')
-            return redirect('home')
+            return HttpResponse('valid form')
+            # form.save()
+            # return HttpResponse('Data inserted successfully')
+            # return redirect('home')
+        else:
+            return HttpResponse('Data not inserted successfully')
     else:
-        return HttpResponse('Data not inserted successfully')
+        # return HttpResponse('Data not inserted successfully')
         form = ProductVariantForm()
 
     context = {
