@@ -53,74 +53,36 @@ def insert(request):
     }
     return render(request, 'bulk_insert/insert.html', context)
 
-# def insert_variant(request):
-#     """
-#     View function to render the 'insert_variant.html' template and provide the necessary context data.
-
-#     Args:
-#         request (HttpRequest): The HTTP request object.
-
-#     Returns:
-#         HttpResponse: The HTTP response object containing the rendered template.
-#     """
-#     if request.method == 'POST':
-#         form = ProductVariantForm(request.POST)
-#         if form.is_valid():
-#             # If the form is valid, save the data
-#             form.save()
-#             messages.success(request, 'Product variant inserted successfully.')
-#             return redirect('home')  # Redirect to the home page or any other appropriate page
-#         else:
-#             # If the form is invalid, display error messages
-#             messages.error(request, 'Form submission failed. Please correct the errors.')
-#     else:
-#         # If it's a GET request, create a blank form
-#         form = ProductVariantForm()
-#         product_form = ProductForm()
-    # if request.method == 'POST':
-    #     product_form = ProductForm(request.POST)
-    #     variant_form = ProductVariantForm(request.POST)
-    #     if product_form.is_valid() and variant_form.is_valid():
-    #         product = product_form.save(commit=False)
-    #         variant = variant_form.save()
-    #         variant.product_id = product.id
-    #         variant.save()
-    #         return HttpResponse('Data inserted successfully')
-    #     else:
-    #         logger.error('Product form errors: %s', product_form.errors)
-    #         logger.error('Variant form errors: %s', variant_form.errors)
-    #         return HttpResponse('Data not inserted successfully')
-    # else:
-    #     product_form = ProductForm()
-    #     variant_form = ProductVariantForm()
-
-    # context = {
-    #     # 'product_form': product_form,
-    #     'product_form': product_form,
-    #     'variant_form': form,
-    #     'products': Product.objects.all(),
-    #     'variants': ProductVariant.objects.all()
-    # }
-    # return render(request, 'bulk_insert/insert_variant.html', context)
-
-
 '''
 new variant insert function
 '''
+
+
 @csrf_protect
 def insert_variant(request):
-    form = None
     if request.method == 'POST':
-        form = ProductVariantForm(data=request.POST)
+        form = ProductVariantForm(request.POST)  # Bind form data to the form instance
+
         if form.is_valid():
-            # return HttpResponse('valid form')
-            form.save()
+            # Create an instance of ProductVariant without saving it yet
+            product_variant = form.save(commit=False)
+
+            # Retrieve the Product instance based on the product_id
+            product_id = request.POST.get('product_id')
+            product_instance = Product.objects.get(id=product_id)
+
+            # Assign the Product instance to the product_id field
+            product_variant.product_id = product_instance
+
+            # Save the form data to the database
+            product_variant.save()
+
             return HttpResponse('Data inserted successfully')
-            return redirect('home')
+            # Note: You don't need to return redirect here as it won't be reached
         else:
             return HttpResponse('Data not inserted successfully')
+
     else:
-        # return HttpResponse('Data not inserted successfully')
         form = ProductVariantForm()
 
     context = {
@@ -130,44 +92,35 @@ def insert_variant(request):
     }
     return render(request, 'bulk_insert/insert_variant.html', context)
 
-# class ProductVariantCreateView(CreateView):
-#     """
-#     A view class for creating a product variant.
+# @csrf_protect
+# def insert_variant(request):
+#     if request.method == 'POST':
+#         sku = request.POST.get('sku')
+#         name = request.POST.get('name')
+#         price = request.POST.get('price')
+#         details = request.POST.get('details')
+#         product_id = request.POST.get('product_id')
 
-#     Attributes:
-#         model (ProductVariant): The model used for creating the form.
-#         fields (list): The fields to include in the form.
-#         template_name (str): The name of the template to render for this view.
-#     """
-#     model = ProductVariant
-#     fields = ['sku', 'name', 'price', 'details', 'product_id']
-#     template_name = 'bulk_insert/insert_variant.html'
+#         form = ProductVariant.objects.create(
+#             sku=sku,
+#             name=name,
+#             price=price,
+#             details=details,
+#             product_id=product_id
+#         )
 
-#     def form_valid(self, form):
-#         """
-#         Method to handle the form submission when it is valid.
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponse('Data inserted successfully')
+#             return redirect('home')
+#         else:
+#             return HttpResponse('Data not inserted successfully')
+#     else:
+#         form = ProductVariantForm()
 
-#         Args:
-#             form (ModelForm): The form object.
-
-#         Returns:
-#             HttpResponse: The HTTP response object containing the rendered template.
-#         """
-#         product_id = self.request.POST.get('product_id')
-#         form.instance.product_id = Product.objects.get(id=product_id)
-#         return super().form_valid(form)
-
-#     def get_context_data(self, **kwargs):
-#         """
-#         Method to provide additional context data to the template.
-
-#         Args:
-#             kwargs: The keyword arguments.
-
-#         Returns:
-#             dict: The context data to provide to the template.
-#         """
-#         context = super().get_context_data(**kwargs)
-#         context['products'] = Product.objects.all()
-#         context['variants'] = ProductVariant.objects.all()
-#         return context
+#     context = {
+#         'form': form,
+#         'products': Product.objects.all(),
+#         'variants': ProductVariant.objects.all()
+#     }
+#     return render(request, 'bulk_insert/insert_variant.html', context)

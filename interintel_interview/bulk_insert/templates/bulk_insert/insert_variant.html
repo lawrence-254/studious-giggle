@@ -1,31 +1,33 @@
 {% extends "layout.html" %} {% block content %}
 <h1>Insert Product Variant</h1>
-<form method="post">
-  {{ form.csrf_token }}
-  <div>
-    <label for="id_sku">SKU:</label>
+<form method="POST">
+  {% csrf_token %} {{ form.as_p }}
+  <!-- {{ form.csrf_token }} -->
+  <!-- <div>
+    <label for="sku">SKU:</label>
     {{ form.sku }} {% if form.sku.errors %}
     <div class="error">{{ form.sku.errors }}</div>
     {% endif %}
   </div>
   <div>
-    <label for="id_name">Product Variant Name:</label>
+    <label for="name">Product Variant Name:</label>
     {{ form.name }} {% if form.name.errors %}
     <div class="error">{{ form.name.errors }}</div>
     {% endif %}
   </div>
   <div>
-    <label for="id_price">Product Variant Price:</label>
+    <label for="price">Product Variant Price:</label>
     {{ form.price }} {% if form.price.errors %}
     <div class="error">{{ form.price.errors }}</div>
     {% endif %}
   </div>
   <div>
-    <label for="id_details">Product Variant Details:</label>
+    <label for="details">Product Variant Details:</label>
     {{ form.details }} {% if form.details.errors %}
     <div class="error">{{ form.details.errors }}</div>
     {% endif %}
-  </div>
+  </div> -->
+  <!-- -------------------------------------------------------------- -->
   <!-- <div>
     <label for="id_product">Select Product:</label>
     {{ form.product }} {% if form.product.errors %}
@@ -41,8 +43,9 @@
       {% endfor %}
     </select>
   </div> -->
-  <label for="id_product">Select Product:</label>
-  <select name="product" id="id_product">
+  <!-- -------------------------------------------- -->
+  <!-- <label for="productId">Select Product:</label>
+  <select name="productId" id="productId">
     <option value="">---------</option>
     {% for product in products %}
     <option value="{{ product.id }}">
@@ -52,7 +55,7 @@
   </select>
   {% if form.product.errors %}
   <div class="error">{{ form.product.errors }}</div>
-  {% endif %}
+  {% endif %} -->
   <button type="submit">Submit</button>
 </form>
 
