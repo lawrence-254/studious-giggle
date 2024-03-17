@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
-                ('image', models.ImageField(default='category_images/default.jpg', upload_to='category_images')),
+                ('image', models.ImageField(default='./static/category_images/default.jpg', upload_to='./static/category_images')),
             ],
         ),
         migrations.CreateModel(
