@@ -1,7 +1,7 @@
 {% extends 'layout.html' %} {% block content %}
 <a href="{% url 'insert' %}">Insert product</a>
 <br />
-<p style="color: red;">Note: The insert variant function is yet to be implemented correctly and implementation is ongoing, but it populates the database</p>
+<p style="color: red;">working on fetching data</p>
 <a href="{% url 'insert_variant' %}">Inser Product Variant </a>
 <h1>Home</h1>
 <div class="container">
@@ -28,6 +28,7 @@
                 <th> Name</th>
                 <th>Price</th>
                 <th>Details</th>
+                <th>Product Id</th>
             </tr>
             {% for variant in variants %}
             <tr>
@@ -35,7 +36,7 @@
                 <td>{{ variant.name }}</td>
                 <td>{{ variant.price }}</td>
                 <td>{{ variant.details }}</td>
-                <td>{{ variant_id.id }}</td>
+                <td>{{ variant.product_id }}</td>
 
             </tr>
             {% endfor %}
