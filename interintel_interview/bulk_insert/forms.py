@@ -25,7 +25,7 @@ class ProductVariantForm(forms.ModelForm):
     name = forms.CharField(label="Product Variant Name", required=True)
     price = forms.DecimalField(label="Product Variant Price", required=True, decimal_places=2)
     details = forms.CharField(label="Product Variant Details", widget=forms.Textarea, required=True)
-    product_id = forms.IntegerField(label="Product ID", required=True)
+    product_id = forms.ModelChoiceField(label="Product ID", queryset=Product.objects.all(), required=True)
 
     class Meta:
         """

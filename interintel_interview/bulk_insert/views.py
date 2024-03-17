@@ -113,10 +113,10 @@ def insert_variant(request):
     if request.method == 'POST':
         form = ProductVariantForm(data=request.POST)
         if form.is_valid():
-            return HttpResponse('valid form')
-            # form.save()
-            # return HttpResponse('Data inserted successfully')
-            # return redirect('home')
+            # return HttpResponse('valid form')
+            form.save()
+            return HttpResponse('Data inserted successfully')
+            return redirect('home')
         else:
             return HttpResponse('Data not inserted successfully')
     else:
